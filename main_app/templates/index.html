@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free AI Startup Idea Validator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #e0e5ec;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      background: #e0e5ec;
+      border-radius: 18px;
+      box-shadow: 8px 8px 24px #bfc4d1, -8px -8px 24px #fff;
+      padding: 1.2rem 2.2rem;
+    }
+    .logo-bar img {
+      width: 48px;
+      height: 48px;
+      vertical-align: middle;
+      filter: drop-shadow(0 2px 0 #fff);
+    }
+    .logo-bar span {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #8B5CF6;
+      letter-spacing: 2px;
+      vertical-align: middle;
+      text-shadow: 0 2px 8px #fff;
+    }
+    .title {
+      margin-top: 0.5rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.4rem;
+      color: #8B5CF6;
+      text-align: center;
+      letter-spacing: 2px;
+      font-weight: 700;
+      filter: drop-shadow(0 2px 0 #fff);
+      text-shadow: 0 2px 8px #fff;
+    }
+    .subtitle {
+      font-size: 1.18rem;
+      color: #4B5563;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-top: 1.1rem;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 1px 4px #fff;
+    }
+    .notebook-form {
+      background: #e0e5ec;
+      border-radius: 32px;
+      box-shadow: 12px 12px 32px #bfc4d1, -12px -12px 32px #fff;
+      padding: 2.7rem 2.5rem 3.2rem 2.5rem;
+      width: 100%;
+      max-width: 540px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.1rem;
+      position: relative;
+      align-items: stretch;
+    }
+    .notebook-form label {
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #8B5CF6;
+      font-size: 1.13rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      display: block;
+    }
+    .notebook-form input[type="text"] {
+      width: 92%;
+      background: #e0e5ec;
+      border: none;
+      border-radius: 16px;
+      padding: 1.1rem 1.4rem;
+      font-size: 1.13rem;
+      color: #4B5563;
+      font-family: 'Roboto', Arial, sans-serif;
+      outline: none;
+      box-shadow: inset 6px 6px 16px #cfd2dc, inset -6px -6px 16px #fff;
+      transition: box-shadow 0.2s, background 0.2s;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+    .notebook-form input[type="text"]:focus {
+      box-shadow: 0 0 0 2px #FACC15, inset 6px 6px 16px #cfd2dc, inset -6px -6px 16px #fff;
+      background: #f7f8fa;
+    }
+    .vibe-selector {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 0.3rem;
+    }
+    .vibe-btn {
+      background: #FACC15;
+      border: none;
+      border-radius: 16px;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.13rem;
+      padding: 0.8rem 2.1rem;
+      cursor: pointer;
+      box-shadow: 6px 6px 16px #cfd2dc, -6px -6px 16px #fff;
+      transition: 
+        background 0.2s, 
+        color 0.2s, 
+        box-shadow 0.2s,
+        transform 0.2s;
+      font-weight: 700;
+      outline: none;
+    }
+    .vibe-btn.selected, .vibe-btn:hover {
+      background: #8B5CF6;
+      color: #fff;
+      box-shadow: 0 0 0 4px #FACC15, 12px 12px 32px #bfc4d1, -12px -12px 32px #fff;
+      transform: translateY(-2px) scale(1.06);
+    }
+    .notebook-form button[type="submit"] {
+      background: #FACC15;
+      color: #fff;
+      border: none;
+      border-radius: 18px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.28rem;
+      padding: 1.1rem 2.2rem;
+      cursor: pointer;
+      box-shadow: 6px 6px 16px #cfd2dc, -6px -6px 16px #fff;
+      margin-top: 1.2rem;
+      transition: 
+        background 0.2s, 
+        color 0.2s, 
+        box-shadow 0.2s,
+        transform 0.2s;
+      letter-spacing: 1px;
+      font-weight: 700;
+      outline: none;
+    }
+    .notebook-form button[type="submit"]:hover {
+      background: #8B5CF6;
+      color: #fff;
+      box-shadow: 0 0 0 4px #FACC15, 12px 12px 32px #bfc4d1, -12px -12px 32px #fff;
+      transform: translateY(-2px) scale(1.06);
+    }
+    .emoji-topright {
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      font-size: 3rem;
+      filter: drop-shadow(0 2px 0 #fff);
+      user-select: none;
+      -webkit-user-select: none;
+      z-index: 2;
+    }
+    .spinner-bottomleft {
+      position: absolute;
+      left: -1rem;
+      bottom: -1rem;
+      rotate: -20deg;
+      width: 70px;
+      height: 70px;
+      user-select: none;
+      -webkit-user-select: none;
+      z-index: 2;
+    }
+    .output-section {
+      background: #e0e5ec;
+      border-radius: 28px;
+      box-shadow: 12px 12px 32px #bfc4d1, -12px -12px 32px #fff;
+      margin: 2.5rem auto 1.5rem auto;
+      padding: 2.5rem 2.2rem;
+      max-width: 820px;
+      width: 100%;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #4B5563;
+      font-size: 1.13rem;
+      position: relative;
+      animation: fadeIn 0.5s;
+      word-break: break-word;
+      white-space: pre-line;
+      line-height: 1.7;
+    }
+    .output-section h3 {
+      color: #8B5CF6;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #fff;
+    }
+    .output-section .loading {
+      color: #8B5CF6;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .output-section strong, .output-section b {
+      font-weight: 700;
+      color: #8B5CF6;
+    }
+    .output-section ul, .output-section ol {
+      margin-left: 1.5em;
+      margin-bottom: 1em;
+    }
+    .output-section li {
+      margin-bottom: 0.5em;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 900px) {
+      .output-section {
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem 2.5rem 0.5rem;
+      }
+      .notebook-form {
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem 2.5rem 0.5rem;
+      }
+      .logo-bar span {
+        font-size: 1.3rem;
+      }
+      .title {
+        font-size: 1.6rem;
+      }
+      .subtitle {
+        font-size: 1.05rem;
+      }
+      .emoji-topright {
+        font-size: 2rem;
+        top: -1.2rem;
+        right: -1.2rem;
+      }
+      .spinner-bottomleft {
+        width: 32px;
+        height: 32px;
+        left: -0.7rem;
+        bottom: -0.7rem;
+      }
+    }
+    .history-btn {
+      position: fixed;
+      top: 2.2rem;
+      right: 2.2rem;
+      background: #F5F7FB;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 4px 4px 16px #cfd2dc, -4px -4px 16px #fff;
+      padding: 0.7rem;
+      cursor: pointer;
+      z-index: 1002;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    .history-btn:hover {
+      background: #e0e5ec;
+      box-shadow: 0 0 0 4px #8B5CF6, 8px 8px 24px #cfd2dc, -8px -8px 24px #fff;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -340px;
+      width: 320px;
+      height: 100vh;
+      background: #F5F7FB;
+      box-shadow: -8px 0 24px #cfd2dc;
+      border-left: 2px solid #8B5CF6;
+      z-index: 1003;
+      transition: right 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar.open {
+      right: 0;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.2rem 0.7rem 1.2rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.3rem;
+      color: #8B5CF6;
+      font-weight: 700;
+      border-bottom: 1px solid #e0e5ec;
+    }
+    #closeSidebar {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #8B5CF6;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+    #historyList {
+      list-style: none;
+      padding: 1rem 1.2rem;
+      margin: 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+    #historyList li {
+      background: #e0e5ec;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      color: #4B5563;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-left: 4px solid #8B5CF6;
+      word-break: break-word;
+    }
+    #historyList li:hover {
+      background: #FACC15;
+      color: #fff;
+    }
+    body[data-theme="dark"] {
+      background: #181926;
+    }
+    body[data-theme="dark"] .logo-bar,
+    body[data-theme="dark"] .notebook-form,
+    body[data-theme="dark"] .output-section,
+    body[data-theme="dark"] .sidebar,
+    body[data-theme="dark"] .history-btn {
+      background: #23243a !important;
+      color: #e0e5ec !important;
+      box-shadow: 8px 8px 32px #14151e, -8px -8px 32px #23243a !important;
+    }
+    body[data-theme="dark"] .notebook-form input[type="text"],
+    body[data-theme="dark"] .notebook-form input[type="text"]:focus {
+      background: #23243a !important;
+      color: #e0e5ec !important;
+      box-shadow: inset 6px 6px 16px #14151e, inset -6px -6px 16px #23243a !important;
+    }
+    body[data-theme="dark"] .vibe-btn,
+    body[data-theme="dark"] .notebook-form button[type="submit"] {
+      background: #8B5CF6 !important;
+      color: #fff !important;
+      box-shadow: 6px 6px 16px #14151e, -6px -6px 16px #23243a !important;
+    }
+    body[data-theme="dark"] .vibe-btn.selected,
+    body[data-theme="dark"] .vibe-btn:hover,
+    body[data-theme="dark"] .notebook-form button[type="submit"]:hover {
+      background: #FACC15 !important;
+      color: #23243a !important;
+      box-shadow: 0 0 0 4px #8B5CF6, 12px 12px 32px #14151e, -12px -12px 32px #23243a !important;
+    }
+    body[data-theme="dark"] .output-section h3,
+    body[data-theme="dark"] .sidebar-header {
+      color: #FACC15 !important;
+      text-shadow: 0 2px 8px #23243a !important;
+    }
+    body[data-theme="dark"] .output-section strong,
+    body[data-theme="dark"] .output-section b {
+      color: #FACC15 !important;
+    }
+    body[data-theme="dark"] .history-btn {
+      background: #23243a !important;
+    }
+    body[data-theme="dark"] #historyList li {
+      background: #23243a !important;
+      color: #e0e5ec !important;
+      border-left: 4px solid #FACC15 !important;
+    }
+    body[data-theme="dark"] #historyList li:hover {
+      background: #8B5CF6 !important;
+      color: #fff !important;
+    }
+    .theme-toggle-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 0.3rem 0.7rem;
+      transition: background 0.2s;
+      box-shadow: none;
+      outline: none;
+    }
+    .theme-toggle-btn:hover {
+      background: #e0e5ec;
+    }
+    body[data-theme="dark"] .theme-toggle-btn:hover {
+      background: #23243a;
+    }
+    /* History tile style */
+    #historyList {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #historyList li {
+      background: #e0e5ec;
+      border-radius: 18px;
+      margin-bottom: 0;
+      padding: 1.1rem 1.2rem;
+      color: #4B5563;
+      font-size: 1.08rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border-left: 4px solid #8B5CF6;
+      word-break: break-word;
+      box-shadow: 4px 4px 16px #cfd2dc, -4px -4px 16px #fff;
+      display: flex;
+      align-items: center;
+      min-height: 56px;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    #historyList li span {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+    #historyList li:hover {
+      background: #FACC15;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-bar">
+    <img src="https://stratup.ai/images/heart-cool.svg" alt="logo">
+    <span style="color: #8B5CF6;">sassinator</span>
+    <button id="themeToggle" class="theme-toggle-btn" title="Toggle light/dark mode">
+      <span id="themeIcon" style="font-size:1.5rem;">🌙</span>
+    </button>
+    {% if user.is_authenticated %}
+      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="vibe-btn" style="margin-left:1rem;">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}" class="vibe-btn" style="margin-left:1rem;">Login</a>
+    {% endif %}
+  </div>
+  <div class="title">
+    Free AI Startup Idea Validator
+  </div>
+  <div class="subtitle">
+    Enter your industry or interest to generate innovative startup ideas with personalized market insights
+  </div>
+  
+  <form class="notebook-form" id="ideaForm">
+    {% csrf_token %}
+    <span class="emoji-topright">🪄</span>
+    <div>
+      <label for="inputField">Enter Your Idea</label>
+      <input type="text" id="inputField" name="inputField" placeholder="e.g. Health, Gaming, Education" required>
+    </div>
+    <div>
+      <div class="vibe-selector">
+        <button type="button" class="vibe-btn selected" onclick="selectVibe(this)">Professional</button>
+        <button type="button" class="vibe-btn" onclick="selectVibe(this)">Fun</button>
+      </div>
+      <input type="hidden" name="vibe" id="vibeInput" value="Professional">
+    </div>
+    <button type="submit">Give Me Opinion</button>
+    <img class="spinner-bottomleft" src="https://stratup.ai/images/spinner.svg" alt="spinner">
+  </form>
+  <div id="outputContainer"></div>
+
+  <!-- Sidebar for history -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <span>History</span>
+      <button id="closeSidebar" title="Close">&times;</button>
+    </div>
+    <ul id="historyList"></ul>
+  </div>
+  <button id="historyBtn" class="history-btn" title="Show History">
+    
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#8B5CF6"><path d="M13 3a9 9 0 1 0 8.94 10.06 1 1 0 1 0-1.98-.22A7 7 0 1 1 12 5a1 1 0 0 0 0-2zm-1 5a1 1 0 0 1 1 1v3.59l2.7 2.7a1 1 0 1 1-1.4 1.42l-3-3A1 1 0 0 1 11 12V9a1 1 0 0 1 1-1z"/></svg>
+  </button>
+ <script type="module">
+    import { GoogleGenAI } from "https://esm.sh/@google/genai";
+
+    // Theme toggle logic
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    function setTheme(mode) {
+        document.body.setAttribute('data-theme', mode);
+        themeIcon.textContent = mode === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('sassinator_theme', mode);
+    }
+    themeBtn.onclick = () => {
+        const current = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(current);
+    };
+    setTheme(localStorage.getItem('sassinator_theme') || 'light');
+
+    const ai = new GoogleGenAI({
+        apiKey: "AIzaSyA5-xrQzH4KInOBkFuvHmX1Yzwzvr-0tbY"
+    });
+
+    function selectVibe(btn) {
+        document.querySelectorAll('.vibe-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('vibeInput').value = btn.textContent;
+    }
+    window.selectVibe = selectVibe;
+
+    // History logic
+    function renderHistory() {
+        fetch('/history/') // Endpoint to get history (handled by index view)
+            .then(response => response.json())
+            .then(history => {
+                const list = document.getElementById('historyList');
+                list.innerHTML = "";
+                history.forEach(item => {
+                    let displayIdea = item.idea.length > 30
+                        ? item.idea.slice(0, 30).replace(/\s+\S*$/, '') + " ......."
+                        : item.idea;
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span title="${item.idea}">${displayIdea}</span> <span style="margin-left:0.7em;font-size:0.97em;color:#8B5CF6;">(${item.vibe})</span>`;
+                    li.dataset.historyId = item.id;
+                    li.onclick = () => loadHistoryItem(item.id);
+                    list.appendChild(li);
+                });
+            });
+    }
+
+    function loadHistoryItem(historyId) {
+        fetch(`/history/${historyId}/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    document.getElementById('inputField').value = data.idea;
+                    document.getElementById('vibeInput').value = data.vibe;
+                    document.querySelectorAll('.vibe-btn').forEach(b => {
+                        b.classList.toggle('selected', b.textContent === data.vibe);
+                    });
+                    const outputDiv = document.getElementById('outputContainer');
+                    outputDiv.innerHTML = `
+                        <div class="output-section" id="mainOutput">
+                            <h3>${data.vibe} Analysis</h3>
+                            ${data.output.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<strong>$1</strong>')}
+                        </div>
+                    `;
+                    outputDiv.scrollIntoView({ behavior: "smooth" });
+                    document.getElementById('sidebar').classList.remove('open');
+                } else {
+                    alert(data.output);
+                }
+            });
+    }
+
+    // Sidebar logic
+    const sidebar = document.getElementById('sidebar');
+    document.getElementById('historyBtn').onclick = () => {
+        sidebar.classList.add('open');
+        renderHistory();
+    };
+    document.getElementById('closeSidebar').onclick = () => {
+        sidebar.classList.remove('open');
+    };
+
+    // Main form logic
+    document.getElementById('ideaForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const idea = document.getElementById('inputField').value.trim();
+        const vibe = document.getElementById('vibeInput').value;
+        const outputDiv = document.getElementById('outputContainer');
+        outputDiv.innerHTML = `
+            <div class="output-section">
+                <div class="loading">Thinking... <span style="font-size:1.3em;">🤖</span></div>
+            </div>
+        `;
+
+        const prompt = vibe === 'Fun'
+            ? `** bhai tujhe hinglish me reponse dena ek dum chill funny aur relatablle way me teasing sur fun way me okay You are a full-on savage startup validator AI — the Shark Tank judge GenZ actually vibes with 🧠+😎. The user wants a '${vibe.toLowerCase()}' style validation for this idea: “${idea}” (buckle up, founder ji).**\n\n🚀 What’s Going Down:\n\n- 🔍 **Market Gossip Check**: Jaise Insta stalk karte ho, waise existing apps ko stalk karo — DAU kitna hai, funding ka kya scene hai, reviews me pyaar ya phatka?\n\n- 🎯 **Main Character Energy**: Dekhenge tere idea mein KitKat jaisi alag crispness hai ya yeh bhi ek aur ‘Banana’-level basic hai 🫠\n\n- 🧠 **Painkiller or Vitamin?**: Real logon ke dard ka ilaaj ban raha hai ya just another "nice to have" startup daydream?\n\n- ⚖️ **Reality Check 101**: Market mein kya scope hai ya sirf YouTube shorts ka dopamine rush?\n\n- 🚧 **Potholes Ahead**: Tech stack weak hai? Team chhuti pe hai? Budget ka dard hai? Sab bataunga — bina filter ke.\n\n- 💬 **Brutal Truth Meter**:\n  💚 "Hyped AF" → 🟡 "Thik Thak, Dekhenge" → 🔴 "Bhai, yeh toh red flag wala toxic idea hai 😬"\n\n- 🗣️ **Public Ki Rai**: Reddit/Quora/Twitter se asli reactions laa ke bataunga — jo logon ne pyaar diya, ya meme banaya, sab milenge!\n\n- 📖 **Success/Fail Ka Tiffin Box**: 2–3 startups ka masala — kisne rocket banaya, kisne jugaad kiya, kisne crash kiya — aur tu kya seekh sakta hai.\n\n- 🚦 **Final Verdict**:\n  🟢 Green = "Bro, launch kar! Founder's era incoming!"\n  🟡 Yellow = "Chill, pehle aur soch"\n  🔴 Red = "Na bhai na, weekend project rakh"\n\n- ✅ **Tera Startup Ki Jeet Ka Percent**: E.g., 73% (Agar tu sahi vibe pakadta hai + logon ko chahiye + idea mein dum hai) always ask at last want roadmap?`
+            : `You are an expert startup validator AI. The user wants a ${vibe.toLowerCase()} analysis for this idea: "${idea}".\n\nWhat It Does:\n\n🔍 Competitive Landscape: Detects similar players, gives links & metrics (DAU, reviews, funding).\n\n🎯 USP Detection: Compares & checks if idea stands out. Highlights your uniqueness or lack thereof.\n\n🧠 Problem–Solution Fit: Matches your idea with real market gaps & pain points.\n\n⚖️ Feasibility & Market Potential: Estimates success chance using trend signals, entry difficulty, and timing.\n\n🚧 Challenges & Risks: Lists realistic blockers (scalability, tech stack, funding, talent).\n\n💬 Brutal Truth Score: Meter from: 💚 “Hyped AF” → 🟡 “Hmm, Maybe” → 🔴 “Hard Pass”\n\n🗣️ Community Feedback Integration: Reddit/Quora/Twitter insights auto-fetched.\n- “What users hate/love in existing apps”\n- “People asking for similar things”\n- Links to real conversations\n\n📖 Success Case Analyzer: Shows 2–3 similar startups, why they succeeded/failed, what to learn.\n\n🚦 Flag Status: Final outcome (🟢 Green = Go ahead, 🟡 Yellow = Needs Work, 🔴 Red = Not Viable).\n\n✅ Estimated Success Probability: e.g., 68% (based on market trends, uniqueness, demand).\n\nRespond in a clear, readable format. If vibe is "Fun", make it witty and playful. If "Professional", keep it concise and business-like. always ask at last want a roadmap?`;
+
+        try {
+            const response = await ai.models.generateContent({
+                model: "gemini-2.5-flash",
+                contents: prompt,
+            });
+            let answer = response.text || "Sorry, no response from AI.";
+            answer = answer
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+            outputDiv.innerHTML = `
+                <div class="output-section" id="mainOutput">
+                    <h3>${vibe} Analysis</h3>
+                    ${answer}
+                    <div style="text-align:center;margin-top:2.2rem;">
+                        <button id="showPlanBtn" class="vibe-btn" style="font-size:1.1rem;">Show Me The Plan 🚀</button>
+                    </div>
+                </div>
+            `;
+
+            // Save to backend
+            fetch('/submit-idea/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: `inputField=${encodeURIComponent(idea)}&vibe=${encodeURIComponent(vibe)}&output=${encodeURIComponent(response.text)}`
+            }).then(res => res.json()).then(data => {
+                if (data.status === "success") {
+                    renderHistory();
+                }
+            });
+
+            document.getElementById('showPlanBtn').onclick = () => showRoadmap(idea, vibe);
+        } catch (err) {
+            outputDiv.innerHTML = `
+                <div class="output-section">
+                    <h3>Error</h3>
+                    <div>Could not fetch AI response. Please try again later.</div>
+                </div>
+            `;
+        }
+    });
+
+    async function showRoadmap(idea, vibe) {
+        const outputDiv = document.getElementById('outputContainer');
+        let roadmapPrompt = vibe === "Fun"
+            ? `Ek-dum custom, tera idea pe based guided adventure — Netflix ka show nahi, tera own startup saga hai 🤘
+🔮 Phase  📦 What's Inside
+--------------------------------------
+🏗️ Phase Breakdown  Pehle MVP ka jugaad, phir thoda beta-tester ka drama, launch ka dhamaaka, aur fir growth ka chakravyuh
+🧰 Team & Tools  Developer bhai, PM sasta Sharmaji, Designer ka visionary mode — aur tools like Bubble, Webflow, Notion (startup ke Swiss army knife 😤)
+🧪 Validation Steps  Thoda dard, thoda pyar — surveys, landing page se feedback, aur asli logon se gupshup karna (user interview wala swag)
+🔁 Pivot Suggestions  Agar early traction dull hai, toh mini-pivot ideas — matlab startup ka makeover, GenZ style!
+⏱️ Timeline Slider  Tu decide karega:
+🚄 Fast-track (1–2 months) = "Jaldi kar bhai, VC wait nahi karta!"
+🐢 Slow-build (6–12 months) = "Aram se, bina toxic hustle ke"
+
+Tera idea: "${idea}"
+Ab roadmap bana, fun, witty, and stepwise. End with: Karein plan ka unlock? 💼✨`
+            : `📋 Step 4: Roadmap Generator
+
+Custom, idea-based step-by-step journey for: "${idea}"
+
+PhaseWhat It Includes
+🏗️ Phase Breakdown: MVP → Beta → Launch → Growth
+🧰 Team & Tools: Role suggestions (Tech, PM, Design), tools like Bubble, Webflow, Notion
+🧪 Validation Steps: Surveys, landing page feedback, user interviews
+🔁 Pivot Suggestions: If early traction is poor, suggests mini-pivots
+⏱️ Timeline Slider: You can choose: Fast-track (1–2 months) vs Slow-build (6–12 months)
+
+Make it clear, actionable, and professional. End with: Want a marketing plan?`;
+
+        let mainOutput = document.getElementById('mainOutput');
+        let roadmapSection = document.createElement('div');
+        roadmapSection.className = "output-section";
+        roadmapSection.innerHTML = `<div class="loading">Generating roadmap... <span style="font-size:1.3em;">🗺️</span></div>`;
+        mainOutput.insertAdjacentElement('afterend', roadmapSection);
+
+        try {
+            const response = await ai.models.generateContent({
+                model: "gemini-2.5-flash",
+                contents: roadmapPrompt,
+            });
+            let answer = response.text || "Sorry, no roadmap from AI.";
+            answer = answer
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+            roadmapSection.innerHTML = `
+                <h3>${vibe} Roadmap</h3>
+                ${answer}
+                <div style="text-align:center;margin-top:2.2rem;">
+                    <button id="showMarketingBtn" class="vibe-btn" style="font-size:1.1rem;">Give Me Marketing Plan</button>
+                </div>
+            `;
+
+            // Update backend with roadmap
+            fetch('/submit-idea/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: `inputField=${encodeURIComponent(idea)}&vibe=${encodeURIComponent(vibe)}&roadmap=${encodeURIComponent(response.text)}`
+            }).then(res => res.json()).then(data => {
+                if (data.status === "success") {
+                    renderHistory();
+                }
+            });
+
+            document.getElementById('showMarketingBtn').onclick = () => showMarketing(idea, vibe, roadmapSection);
+        } catch (err) {
+            roadmapSection.innerHTML = `
+                <h3>Error</h3>
+                <div>Could not fetch roadmap. Please try again later.</div>
+            `;
+        }
+    }
+
+    async function showMarketing(idea, vibe, roadmapSection) {
+        let marketingPrompt = vibe === "Fun"
+            ? `Marketing Strategizer
+Tera personal GTM ka baba — jiska LinkedIn bio hona chahiye “I make things viral, even your chai stall” 🧙🏻‍♂️🚀
+| ⚡ Element | 🔍 Description |
+| 📢 Audience Persona Builder | Core users ko decode karega — kya chubh raha hai unhe, aur tu kaise bandaon ki zindagi thik karega (no more "solution in search of problem" 🤡) |
+| 📈 Channel Strategy | Bataayega kaha daalna hai content: IG pe reels ya Reddit pe rants? IndieHackers for hustlers or Discord for GenZ hangouts — sab sorted |
+| 🎨 Brand Identity Crafter | Logo banayega jo NFT jaisa nahi dikhe 😐, tagline jo viral ho, tone jo bossy nahi, sassy ho — fun, premium, ya "trust karo bhai" type |
+| ⏱️ Launch Timeline | Tera launch sequence: Pre-launch ka trailer, Launch ka dhamaka, Post-launch ka content spam (but with good vibes 🧃) |
+| 💎 Buzz Hook Generator | Headlines jo clickbait jaisi lagti hoon but asli hoon — viral angles for “Wait, this exists??” wala reaction 😱 |
+
+Tera idea: "${idea}"
+Give a fun, witty, stepwise marketing plan.`
+            : `Marketing Strategizer
+Your personal GTM wizard for: "${idea}"
+
+ElementDescription
+📢 Audience Persona Builder: Define core user groups, what hurts them, how you help.
+📈 Channel Strategy: Recommends top platforms: IG, Reddit, IndieHackers, Discord
+🎨 Brand Identity Crafter: Logo concepts, taglines, brand tone (fun, premium, trustworthy)
+⏱️ Launch Timeline: Pre-launch → Launch → Post-launch momentum plan
+💎 Buzz Hook Generator: Headlines & viral content angles
+
+Make it actionable, clear, and professional.`;
+
+        let marketingSection = document.createElement('div');
+        marketingSection.className = "output-section";
+        marketingSection.innerHTML = `<div class="loading">Generating marketing plan... <span style="font-size:1.3em;">📈</span></div>`;
+        roadmapSection.insertAdjacentElement('afterend', marketingSection);
+
+        try {
+            const response = await ai.models.generateContent({
+                model: "gemini-2.5-flash",
+                contents: marketingPrompt,
+            });
+            let answer = response.text || "Sorry, no marketing plan from AI.";
+            answer = answer
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+            marketingSection.innerHTML = `
+                <h3>${vibe} Marketing Plan</h3>
+                ${answer}
+            `;
+
+            // Update backend with marketing plan
+            fetch('/submit-idea/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: `inputField=${encodeURIComponent(idea)}&vibe=${encodeURIComponent(vibe)}&marketing=${encodeURIComponent(response.text)}`
+            }).then(res => res.json()).then(data => {
+                if (data.status === "success") {
+                    renderHistory();
+                }
+            });
+        } catch (err) {
+            marketingSection.innerHTML = `
+                <h3>Error</h3>
+                <div>Could not fetch marketing plan. Please try again later.</div>
+            `;
+        }
+    }
+
+    // Load history on page load
+    renderHistory();
+</script>
+</body>
+</html>
