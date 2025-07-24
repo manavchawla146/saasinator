@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-o)b!tjydikdlim2q*^!vhlhhg55efnl#0sq6x68a6pt2^(m1za
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['saasinator.onrender.com', 'localhost', '127.0.0.1']
 LOGIN_URL = "/login/"
 
 # Application definition
